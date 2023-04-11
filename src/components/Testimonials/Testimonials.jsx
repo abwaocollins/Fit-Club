@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import './Testimonials.css'
 import { testimonialsData } from '../../data/testimonialsData'
+import leftArrow from '../../assets/leftArrow.png'
+import rightArrow from '../../assets/rightArrow.png'
 
 const Testimonials = () => {
   const [selected, setSelected] = useState(0)
   const tLength = testimonialsData.length
+
   return (
     <div className="testimonials">
       <div className="left-t">
@@ -20,7 +23,29 @@ const Testimonials = () => {
         </span>
       </div>
       <div className="right-t">
+        <div></div>
+        <div></div>
         <img src={testimonialsData[selected].image} alt="" />
+        <div className="arrows">
+          <img
+            src={leftArrow}
+            onClick={() => {
+              selected === 0
+                ? setSelected(tLength - 1)
+                : setSelected((prev) => prev - 1)
+            }}
+            alt=""
+          />
+          <img
+            src={rightArrow}
+            onClick={() => {
+              selected === tLength - 1
+                ? setSelected(0)
+                : setSelected((next) => next + 1)
+            }}
+            alt=""
+          />
+        </div>
       </div>
     </div>
   )
